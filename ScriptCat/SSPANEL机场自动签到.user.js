@@ -10,6 +10,7 @@
 // @grant GM_xmlhttpRequest
 // @grant GM_notification
 // ==/UserScript==
+//测试地址为https://muniucloud.net/auth/register?code=Uw4H
 //sendurl为手机推送地址，设置教程https://github.com/Finb/Bark/blob/master/README.md
 var username = ''
 var password = ''
