@@ -2,6 +2,7 @@
 // @name         SSPANEL机场自动签到
 // @namespace    go28
 // @version      1.1.0
+// @description  一个SSPANEL机场自动签到工具，理论上网页页面底部有SSPANEL就可以用
 // @crontab * * once * *
 // @author       go28
 // @debug
