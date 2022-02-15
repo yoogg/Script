@@ -1,0 +1,5 @@
+// qqdoc2
+(id as text,tab) => let
+       web=Json.Document(Web.Contents("https://docs.qq.com/dop-api/opendoc?tab="&Text.From(if tab=null then "BB08J2" else tab)&"&id="&Text.From(id)&"&outformat=1&normal=1"))[clientVars][collab_client_vars],
+       doc=Table.FromRows(List.Split(List.Transform({0..web[maxCol]*web[maxRow]-1},(x)=>try Record.Field(Record.Combine(List.Transform(List.Select(web[initialAttributedText][text]{0}, each (try Record.FieldCount(_{0}[c]{1}) otherwise 0)>0),each _{0}[c]{1})),Text.From(x))[2]?{1}? otherwise null),web[maxCol]))
+    in doc
