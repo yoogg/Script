@@ -1,0 +1,19 @@
+// qqdoctime
+(id as text,tab) => let
+    headers = [
+        referer = "https://docs.qq.com/sheet/"&Text.From(id)&"?tab="&Text.From(if tab=null then "BB08J2" else tab),
+        #"sec-fetch-site" = "same-origin",
+        #"sec-ch-ua-platform" = """Windows""",
+        #"sec-fetch-dest" = "script",
+        authority = "docs.qq.com",
+        #"sec-fetch-mode" = "no-cors",
+        #"accept-language" = "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+        #"user-agent" = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36 Edg/98.0.1108.56",
+        #"sec-ch-ua-mobile" = "?0",
+        accept = "*/*"
+    ],
+    web=Json.Document(Web.Contents("https://docs.qq.com/dop-api/opendoc?tab="&Text.From(if tab=null then "BB08J2" else tab)&"&id="&Text.From(id)&"&outformat=1&normal=1",[Headers=headers]))[clientVars][lastModifyTime],
+    timestamp = (x)=>#datetime(1970,1,1,8,0,0)+#duration(0,0,0,Number.IntegerDivide(x/1000,1)),
+    doc=timestamp(web)
+in
+    doc
